@@ -4,22 +4,31 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    /* ToDo: Need to fix jumping animation */
+
     public CharacterController2D controller;
     public Animator animator;
     public float walkSpeed = 15f;
+    [HideInInspector]
+    public float boostMult = 1f;
+    public bool controlsEnabled = true;
+    [HideInInspector]
+    public bool stun = false;
+    [HideInInspector]
+    public bool playerUp = false;
 
     private float move = 0f;
     private bool jump = false;
-    private bool stun = false;
-    private bool fire2Pressed = false;
-    private bool fire1Pressed = false;
+    //private bool stun = false;
+    //private bool fire2Pressed = false;
+    //private bool fire1Pressed = false;
 
     private void Update()
     {
-        move = Input.GetAxisRaw("Horizontal") * walkSpeed;
+        move = Input.GetAxisRaw("Horizontal") * walkSpeed * boostMult;
         animator.SetFloat("speed", Mathf.Abs(move));
 
-        if(Input.GetButtonDown("Fire2"))
+        /*if(Input.GetButtonDown("Fire2"))
         {
             fire2Pressed = true;
             stun = true;
@@ -28,17 +37,23 @@ public class PlayerMovement : MonoBehaviour
         {
             fire1Pressed = true;
             stun = false;
+        }*/
+        
+        if(stun)
+        {
+            animator.SetBool("isStunned", true);
+            stun = false;
         }
-        else if(Input.GetButtonDown("Jump"))
+        //else if(playerUp)
+        else if (Input.GetButtonDown("Jump"))
         {
             jump = true;
-            animator.SetBool("jump", true);
         }
     }
 
     private void FixedUpdate()
     { 
-        if(fire2Pressed)
+        /*if(fire2Pressed)
         {
             fire2Pressed = false;
             animator.SetBool("isStunned", stun);
@@ -47,24 +62,21 @@ public class PlayerMovement : MonoBehaviour
         {
             fire1Pressed = false;
             animator.SetBool("isUp", true);
-        }
+        }*/
 
-        //animator.SetFloat("speed", Mathf.Abs(move));
-
-        if (!stun)
+        if (controlsEnabled)
         {
-            //animator.SetBool("jump", true);
             controller.Move(move * Time.fixedDeltaTime, false, jump);
             jump = false;
         }
     }
 
-    private void OnStun()
+    public void OnStun()
     {
         animator.SetBool("isStunned", false);
     }
 
-    private void OnUp()
+    public void OnUp()
     {
         if(animator.GetBool("isUp"))
         {
@@ -74,6 +86,6 @@ public class PlayerMovement : MonoBehaviour
 
     public void OnJump()
     {
-        animator.SetBool("jump", false);
+        //animator.SetBool("jump", false);
     }
 }
