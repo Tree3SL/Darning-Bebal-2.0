@@ -12,6 +12,9 @@ public class PlayerNetworking : MonoBehaviour
     public Camera playerCamera;
     public CinemachineVirtualCamera cinemachine;
     public AudioListener audioListener;
+    public BoxCollider2D boxCollider;
+    public CircleCollider2D circleCollider;
+    public Rigidbody2D rigidBody;
 
     private PhotonView photonView;
 
@@ -27,6 +30,9 @@ public class PlayerNetworking : MonoBehaviour
                 playerCamera.enabled = false;
                 cinemachine.enabled = false;
                 audioListener.enabled = false;
+                rigidBody.isKinematic = true;
+                boxCollider.enabled = false;
+                circleCollider.enabled = false;
             }
         }
     }
