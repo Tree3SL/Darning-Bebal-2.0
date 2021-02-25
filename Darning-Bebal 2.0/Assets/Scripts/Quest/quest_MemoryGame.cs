@@ -74,8 +74,12 @@ public class quest_MemoryGame : MonoBehaviour
 
     public void Done() {
         gameStart = false;
-        Debug.Log("Memory Game Quest Condition Met");
+        finish();
     }
 
+    void finish() 
+    {
+        this.transform.parent.GetComponent<Quest_Canvas>().Chest_Holder.GetComponent<QuestHolder>().finish_quest();
+    }
 
 }

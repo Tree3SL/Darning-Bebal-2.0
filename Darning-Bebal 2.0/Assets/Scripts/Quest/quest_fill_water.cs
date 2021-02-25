@@ -8,6 +8,7 @@ public class quest_fill_water : MonoBehaviour
     Slider ProgressBar;
     public float Fill_Speed = 20;
 
+
     // Start is called before the first frame update
     void Start()
     {
@@ -29,8 +30,15 @@ public class quest_fill_water : MonoBehaviour
         {
             if (ProgressBar.value >= ProgressBar.maxValue)
             {
-                Debug.Log("Water Fill Condition Met");
+                finish();
             }
         }
     }
+
+    void finish() 
+    {
+        this.transform.parent.parent.GetComponent<Quest_Canvas>().Chest_Holder.GetComponent<QuestHolder>().finish_quest();
+    }
+
+
 }

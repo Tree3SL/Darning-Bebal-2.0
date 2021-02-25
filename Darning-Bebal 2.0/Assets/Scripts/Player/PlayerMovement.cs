@@ -12,7 +12,7 @@ public class PlayerMovement : MonoBehaviour
     [HideInInspector]
     public float boostMult = 1f;
     public bool controlsEnabled = true;
-    [HideInInspector]
+    //[HideInInspector]
     public bool stun = false;
     [HideInInspector]
     public bool playerUp = false;
