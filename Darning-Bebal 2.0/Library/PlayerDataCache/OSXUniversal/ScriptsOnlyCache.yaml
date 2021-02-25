@@ -3,9 +3,12 @@ ScriptsOnlyBuild:
     Assembly-CSharp.dll:
     - CharacterController2D
     - Door
+    - GameManager
     - PhotonManager
+    - PlayerManager
     - PlayerMovement
     - PlayerNetworking
+    - TeamManager
     Cinemachine.dll:
     - Cinemachine.CinemachineBrain
     - Cinemachine.CinemachineFramingTransposer
@@ -184,51 +187,57 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 14356}
     - Class: 114
-      Script: {instanceID: 14610}
+      Script: {instanceID: 14430}
     - Class: 114
-      Script: {instanceID: 14630}
+      Script: {instanceID: 14612}
     - Class: 114
-      Script: {instanceID: 14694}
+      Script: {instanceID: 14632}
     - Class: 114
-      Script: {instanceID: 14716}
+      Script: {instanceID: 14696}
     - Class: 114
-      Script: {instanceID: 14816}
+      Script: {instanceID: 14718}
     - Class: 114
-      Script: {instanceID: 14864}
+      Script: {instanceID: 14818}
     - Class: 114
-      Script: {instanceID: 14906}
+      Script: {instanceID: 14866}
     - Class: 114
-      Script: {instanceID: 14916}
+      Script: {instanceID: 14908}
     - Class: 114
-      Script: {instanceID: 15270}
+      Script: {instanceID: 14918}
     - Class: 114
-      Script: {instanceID: 15344}
+      Script: {instanceID: 15272}
     - Class: 114
-      Script: {instanceID: 15624}
+      Script: {instanceID: 15346}
     - Class: 114
-      Script: {instanceID: 15818}
+      Script: {instanceID: 15626}
     - Class: 114
-      Script: {instanceID: 15866}
+      Script: {instanceID: 15762}
     - Class: 114
-      Script: {instanceID: 15972}
+      Script: {instanceID: 15822}
     - Class: 114
-      Script: {instanceID: 16056}
+      Script: {instanceID: 15870}
     - Class: 114
-      Script: {instanceID: 16080}
+      Script: {instanceID: 15914}
     - Class: 114
-      Script: {instanceID: 16082}
+      Script: {instanceID: 15978}
     - Class: 114
-      Script: {instanceID: 16118}
+      Script: {instanceID: 16062}
     - Class: 114
-      Script: {instanceID: 16144}
+      Script: {instanceID: 16086}
     - Class: 114
-      Script: {instanceID: 16188}
+      Script: {instanceID: 16088}
     - Class: 114
-      Script: {instanceID: 16204}
+      Script: {instanceID: 16124}
     - Class: 114
-      Script: {instanceID: 16276}
+      Script: {instanceID: 16150}
     - Class: 114
-      Script: {instanceID: 16284}
+      Script: {instanceID: 16194}
+    - Class: 114
+      Script: {instanceID: 16210}
+    - Class: 114
+      Script: {instanceID: 16282}
+    - Class: 114
+      Script: {instanceID: 16290}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -480,7 +489,7 @@ ScriptsOnlyBuild:
     className: Renderer2DData
   - hash:
       serializedVersion: 2
-      Hash: da538fc22a92da717f65b1a6d21762a6
+      Hash: a7d5e0a384d2f5608fb1271f5446b73f
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: PhotonManager
@@ -816,7 +825,7 @@ ScriptsOnlyBuild:
     className: CinemachinePOV
   - hash:
       serializedVersion: 2
-      Hash: 7e984604e4484dcb10a773bc6d7617b8
+      Hash: a97b1366fbb68f2118d4dc94daae06d2
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: PlayerNetworking
@@ -1020,6 +1029,12 @@ ScriptsOnlyBuild:
     className: TextButtonTransition
   - hash:
       serializedVersion: 2
+      Hash: ed95aaa0264bf4d2158edf64a5813591
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: GameManager
+  - hash:
+      serializedVersion: 2
       Hash: f050e4ebd311386367bb1906f9218b01
     assemblyName: Unity.RenderPipelines.Universal.Runtime.dll
     namespaceName: UnityEngine.Rendering.Universal
@@ -1068,7 +1083,7 @@ ScriptsOnlyBuild:
     className: PointedAtGameObjectInfo
   - hash:
       serializedVersion: 2
-      Hash: a0c36b33c4410f2f0ed2ec9d1102e631
+      Hash: a2048c174fa3ee4e2b8ca089d6969a0b
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: PlayerMovement
@@ -1410,6 +1425,12 @@ ScriptsOnlyBuild:
     className: MoveByKeys
   - hash:
       serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: PlayerManager
+  - hash:
+      serializedVersion: 2
       Hash: c5bfd0f6f4664318b8b9f50d88408421
     assemblyName: Unity.RenderPipelines.Universal.Runtime.dll
     namespaceName: UnityEngine.Rendering.Universal
@@ -1456,6 +1477,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.RenderPipelines.Core.Runtime.dll
     namespaceName: 
     className: SceneRenderPipeline
+  - hash:
+      serializedVersion: 2
+      Hash: 68416b626d99521445cb9abf52c7d76f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: TeamManager
   - hash:
       serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
@@ -1645,4 +1672,4 @@ ScriptsOnlyBuild:
   platform: 2
   scenePathNames:
   - Assets/Scenes/PhotonTest.unity
-  playerPath: /Users/sami/Desktop/Darning-Bebal-2.0/Darning-Bebal 2.0/Photon-Test2.app
+  playerPath: /Users/sami/Desktop/Darning-Bebal-2.0/Darning-Bebal 2.0/Photon-Test.app

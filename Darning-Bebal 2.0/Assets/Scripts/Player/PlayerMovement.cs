@@ -14,37 +14,34 @@ public class PlayerMovement : MonoBehaviour
     public bool controlsEnabled = true;
     [HideInInspector]
     public bool stun = false;
-    [HideInInspector]
-    public bool playerUp = false;
 
     private float move = 0f;
     private bool jump = false;
-    //private bool stun = false;
-    //private bool fire2Pressed = false;
-    //private bool fire1Pressed = false;
+    private bool stunAnimation = false;
+    private bool playerUp = false;
 
     private void Update()
     {
         move = Input.GetAxisRaw("Horizontal") * walkSpeed * boostMult;
-        animator.SetFloat("speed", Mathf.Abs(move));
 
-        /*if(Input.GetButtonDown("Fire2"))
+        if (controlsEnabled)
         {
-            fire2Pressed = true;
-            stun = true;
+            animator.SetFloat("speed", Mathf.Abs(move));
         }
-        else if(Input.GetButtonDown("Fire1"))
+        else
         {
-            fire1Pressed = true;
-            stun = false;
-        }*/
+            animator.SetFloat("speed", 0f);
+        }
         
-        if(stun)
+        if(stunAnimation)
         {
             animator.SetBool("isStunned", true);
-            stun = false;
+            stunAnimation = false;
         }
-        //else if(playerUp)
+        else if(playerUp)
+        {
+            animator.SetBool("isUp", true);
+        }
         else if (Input.GetButtonDown("Jump"))
         {
             jump = true;
@@ -53,17 +50,6 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     { 
-        /*if(fire2Pressed)
-        {
-            fire2Pressed = false;
-            animator.SetBool("isStunned", stun);
-        }
-        else if(fire1Pressed)
-        {
-            fire1Pressed = false;
-            animator.SetBool("isUp", true);
-        }*/
-
         if (controlsEnabled)
         {
             controller.Move(move * Time.fixedDeltaTime, false, jump);
@@ -87,5 +73,15 @@ public class PlayerMovement : MonoBehaviour
     public void OnJump()
     {
         //animator.SetBool("jump", false);
+    }
+
+    public void TriggerStunAnimation()
+    {
+        stunAnimation = true;
+    }
+
+    public void EnableAnimations()
+    {
+        playerUp = true;
     }
 }

@@ -4,17 +4,15 @@ using UnityEngine;
 
 public class PlayerManager : MonoBehaviour
 { 
-    // disable controls
-    // enable controls
-    //public float speedBoost = 2.5f;
+    /*
+     * Player slows when interacting with an object created by Alan.
+     */
 
-    //private SpriteRenderer sprite;
     private float direction = 1f;
     private PlayerMovement movement;
 
     private void Start()
     {
-        //sprite = gameObject.GetComponent<SpriteRenderer>();
         movement = gameObject.GetComponent<PlayerMovement>();
     }
 
@@ -25,15 +23,6 @@ public class PlayerManager : MonoBehaviour
         if(currentAxis != 0 && currentAxis != direction)
         {
             direction = currentAxis;
-        }
-
-        if(Input.GetKeyDown(KeyCode.G))
-        {
-            DisablePlayer(true);
-        }
-        else if(Input.GetKeyDown(KeyCode.F))
-        {
-            EnablePlayer();
         }
     }
 
@@ -57,6 +46,7 @@ public class PlayerManager : MonoBehaviour
         if(stun)
         {
             movement.stun = true;
+            movement.TriggerStunAnimation();
         }
 
         movement.controlsEnabled = false;
@@ -65,5 +55,7 @@ public class PlayerManager : MonoBehaviour
     public void EnablePlayer()
     {
         movement.controlsEnabled = true;
+        movement.stun = false;
+        movement.EnableAnimations();
     }
 }
