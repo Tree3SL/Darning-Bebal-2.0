@@ -219,6 +219,8 @@ MonoBehaviour:
   animator: {fileID: 8630248148158420236}
   walkSpeed: 10
   boostMult: 1
+  controlsEnabled: 1
+  stun: 0
 --- !u!95 &8630248148158420236
 Animator:
   serializedVersion: 3
@@ -346,6 +348,9 @@ MonoBehaviour:
   playerCamera: {fileID: 7186287214641711164}
   cinemachine: {fileID: 7186287215742454113}
   audioListener: {fileID: 7186287214641711167}
+  boxCollider: {fileID: 7186287215315180011}
+  circleCollider: {fileID: 7186287215315180009}
+  rigidBody: {fileID: 3662704933669385709}
 --- !u!114 &7796516038988009873
 MonoBehaviour:
   m_ObjectHideFlags: 0
