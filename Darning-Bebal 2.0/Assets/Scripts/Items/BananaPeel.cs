@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 public class BananaPeel : MonoBehaviour
 {
@@ -31,8 +32,7 @@ public class BananaPeel : MonoBehaviour
             //collision.attachedRigidbody.AddForce(new Vector2(fall_force*facing, 0));
             //delay recover from stun
             StartCoroutine(delay_recover(collision.gameObject));
-            this.gameObject.GetComponent<SpriteRenderer>().enabled = false;
-            this.gameObject.GetComponent<BoxCollider2D>().enabled = false;
+            GetComponent<PhotonView>().RPC("pun_hide", RpcTarget.All);
         }
     }
 
@@ -40,6 +40,21 @@ public class BananaPeel : MonoBehaviour
     {
         yield return new WaitForSeconds(stun_time);
         target.gameObject.GetComponent<PlayerManager>().EnablePlayer();
+
+        GetComponent<PhotonView>().RPC("pun_destory", RpcTarget.All);
+        target.gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
+    }
+
+    [PunRPC]
+    void pun_hide() 
+    {
+        this.gameObject.GetComponent<SpriteRenderer>().enabled = false;
+        this.gameObject.GetComponent<BoxCollider2D>().enabled = false;
+    }
+
+    [PunRPC]
+    void pun_destory() 
+    {
         Destroy(this.gameObject);
     }
 }

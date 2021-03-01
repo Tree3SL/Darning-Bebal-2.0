@@ -300,6 +300,7 @@ GameObject:
   - component: {fileID: 1150871120}
   - component: {fileID: 1150871119}
   - component: {fileID: 467129464}
+  - component: {fileID: 1817429075}
   m_Layer: 0
   m_Name: QuestChestBear
   m_TagString: Untagged
@@ -365,7 +366,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   quest_index: 0
   quest_prefab: {fileID: 2057095614662242633, guid: 496e058da5caa6540b46e3b37d81063f, type: 3}
-  quest_timer: 20
+  quest_timer: 15
   timer: {fileID: 4450643389009917506}
   ready: 0
   active: 0
@@ -373,6 +374,7 @@ MonoBehaviour:
   quest_canvas: {fileID: 0}
   triggerStay: 0
   colliderObject: {fileID: 0}
+  ProgressBar: {fileID: 0}
 --- !u!50 &467129464
 Rigidbody2D:
   serializedVersion: 4
@@ -394,6 +396,28 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &1817429075
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6982293895501320700}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  observableSearch: 2
+  Synchronization: 3
+  OwnershipTransfer: 0
+  ObservedComponents: []
+  viewIdField: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1 &8806215844592846904
 GameObject:
   m_ObjectHideFlags: 0

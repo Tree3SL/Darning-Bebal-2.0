@@ -105,7 +105,7 @@ public class quest_QTE : MonoBehaviour
                 if (current_level >= keys_per_level.Length)
                 {
                     ClearKeyList();
-                    Debug.Log("QTE Quest Condition Met");
+                    finish();
                     isDone = true;
                 }
                 else
@@ -124,6 +124,10 @@ public class quest_QTE : MonoBehaviour
             ProgressBar.value += ProgressBar.maxValue/ keys_per_level.Length;
         }
         
+    }
+    void finish()
+    {
+        this.transform.parent.parent.GetComponent<Quest_Canvas>().Chest_Holder.GetComponent<QuestHolder>().finish_quest();
     }
 
 }

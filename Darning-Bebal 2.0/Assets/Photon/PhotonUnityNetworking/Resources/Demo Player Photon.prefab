@@ -219,7 +219,8 @@ MonoBehaviour:
   animator: {fileID: 8630248148158420236}
   walkSpeed: 10
   boostMult: 1
-  playerUp: 0
+  controlsEnabled: 1
+  stun: 0
 --- !u!95 &8630248148158420236
 Animator:
   serializedVersion: 3

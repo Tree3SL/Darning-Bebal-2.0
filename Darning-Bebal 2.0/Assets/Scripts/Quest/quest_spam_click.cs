@@ -30,8 +30,13 @@ public class quest_spam_click : MonoBehaviour
         {
             if (ProgressBar.value >= 100) 
             {
-                Debug.Log("Spam Click Quest Condition Met");
+                finish();
             }
         }
+    }
+
+    void finish()
+    {
+        this.transform.parent.parent.GetComponent<Quest_Canvas>().Chest_Holder.GetComponent<QuestHolder>().finish_quest();
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Photon.Pun;
 
 public class QuestHolder : MonoBehaviour
 {
@@ -57,7 +58,7 @@ public class QuestHolder : MonoBehaviour
         }
     }
 
-
+    [PunRPC]
     public void start_countdown() 
     {
         ready = false;
@@ -106,6 +107,8 @@ public class QuestHolder : MonoBehaviour
         quest_canvas.GetComponent<Quest_Canvas>().Chest_Holder = this.gameObject;
         //disable player
         player.GetComponent<PlayerManager>().DisablePlayer(false);
+        //prevent previous inertia
+        player.GetComponent<Rigidbody2D>().velocity = new Vector2(0,0);
     }
 
     //call when quest is close without finishing
@@ -128,7 +131,11 @@ public class QuestHolder : MonoBehaviour
         {
             ProgressBar.GetComponent<Slider>().value += quest_timer;
         }
-        start_countdown();
+
+        //start countdown
+        GetComponent<PhotonView>().RPC("start_countdown", RpcTarget.All);
+
+
         close_quest();
     }
 }

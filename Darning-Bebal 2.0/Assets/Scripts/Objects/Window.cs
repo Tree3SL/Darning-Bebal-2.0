@@ -19,13 +19,12 @@ public class Window : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("Trigger used.");
         if (collision.CompareTag("Player"))
         {
             if (collision.GetComponent<PlayerMovement>().stun) 
             {
+                collision.gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
                 collision.gameObject.transform.position = spawn_point.transform.position;
-                Debug.Log("Window used.");
             }   
         }
     }
