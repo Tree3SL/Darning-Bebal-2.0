@@ -19,7 +19,7 @@ public class PhotonManager : MonoBehaviourPunCallbacks
     public GameObject teamInstance;
     public Color[] colors;*/
 
-    private void Start()
+    private void Start() // stays here
     {
         //PhotonNetwork.ConnectUsingSettings();
 
@@ -34,27 +34,35 @@ public class PhotonManager : MonoBehaviourPunCallbacks
             game.teams[i] = manager;
         }
 
-        PhotonNetwork.ConnectUsingSettings();
+        GameObject player = PhotonNetwork.Instantiate("Demo Player Photon", spawn.transform.position, Quaternion.identity);
+
+        //PhotonNetwork.ConnectUsingSettings(); // probably don't need
     }
 
-    public override void OnConnectedToMaster()
+    /*public override void OnConnectedToMaster() // in other
     {
         Debug.Log("Connected to master");
 
         PhotonNetwork.JoinLobby();
     }
 
-    public override void OnJoinedLobby()
+    public override void OnJoinedLobby() // in other
     {
         Debug.Log("Joined Lobby");
 
         PhotonNetwork.JoinOrCreateRoom(roomName, new RoomOptions { MaxPlayers = (byte)maxPlayers }, TypedLobby.Default);
     }
 
-    public override void OnJoinedRoom()
+    public override void OnJoinedRoom() // in other
     {
         Debug.Log("Joined " + PhotonNetwork.CurrentRoom.Name);
 
-        PhotonNetwork.Instantiate("Demo Player Photon", spawn.transform.position, Quaternion.identity);
-    }
+        GameObject player = PhotonNetwork.Instantiate("Demo Player Photon", spawn.transform.position, Quaternion.identity);
+
+        PlayerManager playerInfo = player.GetComponent<PlayerManager>();
+
+        playerInfo.nickname = PhotonNetwork.LocalPlayer.NickName;
+
+        Debug.Log(playerInfo.nickname);
+    }*/
 }

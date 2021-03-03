@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    /* ToDo: Need to fix jumping animation */
-
     public CharacterController2D controller;
     public Animator animator;
     public float walkSpeed = 15f;
@@ -14,11 +12,14 @@ public class PlayerMovement : MonoBehaviour
     public bool controlsEnabled = true;
     //[HideInInspector]
     public bool stun = false;
+    public GameObject target;
+    public bool isIn = false;
 
     private float move = 0f;
     private bool jump = false;
-    private bool stunAnimation = false;
-    private bool playerUp = false;
+    public bool stunAnimation = false;
+    public bool playerUp = false;
+    public Rigidbody2D playerRigidbody;
 
     private void Update()
     {
@@ -27,6 +28,15 @@ public class PlayerMovement : MonoBehaviour
         if (controlsEnabled)
         {
             animator.SetFloat("speed", Mathf.Abs(move));
+
+            if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
+            {
+                jump = true;
+            }
+            else if (Input.GetKeyDown(KeyCode.E) && isIn)
+            {
+                this.transform.localPosition = target.transform.localPosition;
+            }
         }
         else
         {
@@ -41,10 +51,7 @@ public class PlayerMovement : MonoBehaviour
         else if(playerUp)
         {
             animator.SetBool("isUp", true);
-        }
-        else if (Input.GetButtonDown("Jump"))
-        {
-            jump = true;
+            playerUp = false;
         }
     }
 
@@ -54,6 +61,10 @@ public class PlayerMovement : MonoBehaviour
         {
             controller.Move(move * Time.fixedDeltaTime, false, jump);
             jump = false;
+        }
+        else
+        {
+            playerRigidbody.velocity = Vector3.zero;
         }
     }
 
@@ -67,12 +78,8 @@ public class PlayerMovement : MonoBehaviour
         if(animator.GetBool("isUp"))
         {
             animator.SetBool("isUp", false);
+            //playerUp = false;
         }
-    }
-
-    public void OnJump()
-    {
-        //animator.SetBool("jump", false);
     }
 
     public void TriggerStunAnimation()
@@ -83,5 +90,56 @@ public class PlayerMovement : MonoBehaviour
     public void EnableAnimations()
     {
         playerUp = true;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Door"))
+        {
+            switch (collision.GetComponent<Door>().GetDoorEnum())
+            {
+                case Door.DoorEnum.Left:
+                    target = collision.GetComponent<Door>().GetObjEnd();
+                    isIn = true;
+                    break;
+                case Door.DoorEnum.Right:
+                    target = collision.GetComponent<Door>().GetObjEnd();
+                    isIn = true;
+                    break;
+                default:
+                    break;
+            }
+
+        }
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Door"))
+        {
+            switch (collision.GetComponent<Door>().GetDoorEnum())
+            {
+                case Door.DoorEnum.Left:
+                    target = collision.GetComponent<Door>().GetObjEnd();
+                    isIn = true;
+                    break;
+                case Door.DoorEnum.Right:
+                    target = collision.GetComponent<Door>().GetObjEnd();
+                    isIn = true;
+                    break;
+                default:
+                    break;
+            }
+
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Door"))
+        {
+            target = null;
+            isIn = false;
+        }
     }
 }

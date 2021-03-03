@@ -3,10 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerManager : MonoBehaviour
-{ 
-    /*
-     * Player slows when interacting with an object created by Alan.
-     */
+{
+    public string nickname;
 
     private float direction = 1f;
     private PlayerMovement movement;
@@ -50,12 +48,14 @@ public class PlayerManager : MonoBehaviour
         }
 
         movement.controlsEnabled = false;
+        //movement.playerRigidbody.isKinematic = true;
     }
 
     public void EnablePlayer()
     {
-        movement.controlsEnabled = true;
+        //movement.controlsEnabled = true;
         movement.stun = false;
         movement.EnableAnimations();
+        movement.controlsEnabled = true;
     }
 }
