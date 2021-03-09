@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class PlayerManager : MonoBehaviour
 {
-    public string nickname;
-
     private float direction = 1f;
     private PlayerMovement movement;
+
+    public GameObject inventory;
 
     private void Start()
     {

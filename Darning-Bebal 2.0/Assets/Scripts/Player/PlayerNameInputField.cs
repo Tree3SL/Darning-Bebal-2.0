@@ -14,6 +14,9 @@ namespace Com.MyCompany.MyGame
     [RequireComponent(typeof(InputField))]
     public class PlayerNameInputField : MonoBehaviour
     {
+        [SerializeField]
+        private GameObject launcher;
+
         #region Private Constants
 
         // Store the PlayerPref Key to avoid typos
@@ -66,7 +69,10 @@ namespace Com.MyCompany.MyGame
                 return;
             }
 
+            launcher.GetComponent<Launcher>().UpdateNickName(value);
+
             PhotonNetwork.NickName = value;
+
 
             PlayerPrefs.SetString(playerNamePrefKey, value);
         }

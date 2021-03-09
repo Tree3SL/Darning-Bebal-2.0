@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2540475230466519295}
-  - component: {fileID: 2540475230466519294}
   - component: {fileID: 841822040}
   m_Layer: 0
   m_Name: Game Manager
@@ -32,28 +31,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2540475230466519294
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2540475230466519293}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 031e5691b298e487497ae4a73e28146f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxPlayers: 2
-  roomName: Test Room
-  spawn: {fileID: 0}
-  game: {fileID: 0}
-  teams: []
-  numberOfTeams: 2
-  teamInstance: {fileID: 6299227047014469323, guid: e974a2538d38743ebac70aae449ce747, type: 3}
-  colors:
-  - {r: 0.13363297, g: 0.8584906, b: 0.82981586, a: 0}
-  - {r: 0.7087435, g: 0.38892844, b: 0.8679245, a: 0}
 --- !u!114 &841822040
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -66,9 +43,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c41e149fde6b40d5bdf1505a555f67f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  teams: []
-  numberOfTeams: 2
-  teamInstance: {fileID: 6299227047014469323, guid: e974a2538d38743ebac70aae449ce747, type: 3}
   colors:
   - {r: 0.10346207, g: 0.8618835, b: 0.8773585, a: 0}
   - {r: 0.78673106, g: 0.45323068, b: 0.9150943, a: 0}
+  team1: []
+  team2: []
+  spawn: {fileID: 0}

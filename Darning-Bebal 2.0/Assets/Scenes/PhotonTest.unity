@@ -22429,7 +22429,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 841822040, guid: bad0578992d56434280e273b5c6dd09d, type: 3}
   m_PrefabInstance: {fileID: 2540475231394162504}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 2540475231394162505}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0c41e149fde6b40d5bdf1505a555f67f, type: 3}
@@ -23870,6 +23870,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 841822040, guid: bad0578992d56434280e273b5c6dd09d, type: 3}
+      propertyPath: spawn
+      value: 
+      objectReference: {fileID: 2057836944}
     - target: {fileID: 2540475230466519293, guid: bad0578992d56434280e273b5c6dd09d, type: 3}
       propertyPath: m_Name
       value: Game Manager
@@ -23926,8 +23930,36 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2540475230466519294, guid: bad0578992d56434280e273b5c6dd09d, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: bad0578992d56434280e273b5c6dd09d, type: 3}
+--- !u!1 &2540475231394162505 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2540475230466519293, guid: bad0578992d56434280e273b5c6dd09d, type: 3}
+  m_PrefabInstance: {fileID: 2540475231394162504}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2540475231394162506
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2540475231394162505}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  observableSearch: 2
+  Synchronization: 3
+  OwnershipTransfer: 0
+  ObservedComponents: []
+  viewIdField: 1
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1001 &3327939185875019443
 PrefabInstance:
   m_ObjectHideFlags: 0
