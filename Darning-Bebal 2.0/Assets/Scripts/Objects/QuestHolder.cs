@@ -19,9 +19,7 @@ public class QuestHolder : MonoBehaviour
     public bool triggerStay;
     public GameObject colliderObject;
 
-    public GameObject ProgressBar;
-
-
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -46,7 +44,7 @@ public class QuestHolder : MonoBehaviour
 
         if (colliderObject != null && triggerStay) 
         {
-            if (Input.GetKeyDown(KeyCode.W) && !active)
+            if (Input.GetKeyDown(KeyCode.Q) && !active)
             {
                 open_quest(colliderObject);
             }
@@ -126,11 +124,15 @@ public class QuestHolder : MonoBehaviour
     //call when quest is close after finish
     public void finish_quest()
     {
-        //TO DO : check isMine
-        if (ProgressBar != null) 
+        //find own team progress bar
+        if (colliderObject != null) 
         {
-            ProgressBar.GetComponent<Slider>().value += quest_timer;
+            string bar_name = "Progress Bar Team " + colliderObject.GetComponent<PlayerManager>().team_index;
+            GameObject target_bar_object = GameObject.Find(bar_name);
+            //update progress bar
+            target_bar_object.GetComponent<PhotonView>().RPC("IncrementProgress", RpcTarget.All, quest_timer);
         }
+        
 
         //start countdown
         GetComponent<PhotonView>().RPC("start_countdown", RpcTarget.All);

@@ -4940,8 +4940,9 @@ GameObject:
   - component: {fileID: 6283744760634038767}
   - component: {fileID: 6283744760634038765}
   - component: {fileID: 6283744760634038766}
+  - component: {fileID: 5678427683120531183}
   m_Layer: 5
-  m_Name: Team1ProgressBar
+  m_Name: FinalProgressBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5030,7 +5031,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd5fc0ef73a37494f90fef36d6c82529, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FillSpeed: 0.5
+  max: 200
+  FillSpeed: 10
+--- !u!114 &5678427683120531183
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6283744760634038760}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  observableSearch: 2
+  Synchronization: 3
+  OwnershipTransfer: 0
+  ObservedComponents: []
+  viewIdField: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1 &6283744761310095135
 GameObject:
   m_ObjectHideFlags: 0

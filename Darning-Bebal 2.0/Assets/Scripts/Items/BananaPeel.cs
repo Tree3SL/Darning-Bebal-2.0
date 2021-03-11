@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
+using Photon.Realtime;
 
-public class BananaPeel : MonoBehaviour
+public class BananaPeel : MonoBehaviour, ItemInterface
 {
     public bool active;
     public float stun_time = 0;
@@ -11,7 +12,7 @@ public class BananaPeel : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //active = false;
+        active = true;
     }
 
     // Update is called once per frame
@@ -27,12 +28,15 @@ public class BananaPeel : MonoBehaviour
         {
             //stun player
             collision.gameObject.GetComponent<PlayerManager>().DisablePlayer(true);
+            //reflection
+            this.gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(3 * collision.gameObject.GetComponent<PlayerManager>().GetDirection(), 0), ForceMode2D.Impulse);
+
             //animate falling
             //float facing = collision.gameObject.GetComponent<PlayerManager>().GetDirection();
             //collision.attachedRigidbody.AddForce(new Vector2(fall_force*facing, 0));
+            GetComponent<PhotonView>().RPC("pun_hide", RpcTarget.All);
             //delay recover from stun
             StartCoroutine(delay_recover(collision.gameObject));
-            GetComponent<PhotonView>().RPC("pun_hide", RpcTarget.All);
         }
     }
 
@@ -45,11 +49,25 @@ public class BananaPeel : MonoBehaviour
         target.gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
     }
 
+    public void Use() 
+    {
+        GameObject player = GameObject.Find("Game Manager").GetComponent<GameManager>().player_holder;
+        GameObject new_object = PhotonNetwork.Instantiate("BananaPeel", player.transform.position + new Vector3(1* player.GetComponent<PlayerManager>().GetDirection(), 0,0), Quaternion.identity, 0);
+        Destroy(this.gameObject);
+    }
+
+    public void Disable()
+    {
+        active = false;
+    }
+
+
     [PunRPC]
     void pun_hide() 
     {
-        this.gameObject.GetComponent<SpriteRenderer>().enabled = false;
+        //this.gameObject.GetComponent<SpriteRenderer>().enabled = false;
         this.gameObject.GetComponent<BoxCollider2D>().enabled = false;
+
     }
 
     [PunRPC]

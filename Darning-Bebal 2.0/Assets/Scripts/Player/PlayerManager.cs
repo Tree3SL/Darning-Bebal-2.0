@@ -1,17 +1,24 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
+using Photon.Realtime;
 
-public class PlayerManager : MonoBehaviour
+public class PlayerManager : MonoBehaviourPun
 {
     private float direction = 1f;
     private PlayerMovement movement;
 
-    public GameObject inventory;
+    public int team_index;  //index from color+1, result in 1 or 2
 
     private void Start()
     {
         movement = gameObject.GetComponent<PlayerMovement>();
+        if (photonView.IsMine) 
+        {
+            GameObject.Find("Game Manager").GetComponent<GameManager>().save_player(this.gameObject);
+        }
+            
     }
 
     private void Update()

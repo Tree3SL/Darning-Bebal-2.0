@@ -2,27 +2,31 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Photon.Pun;
 
 public class TeamProgressBars : MonoBehaviour
 {
+    public float max;
+
     private Slider slider;
 
     private float targetProgress = 0;
 
-    public float FillSpeed = 0.5f;
+    public float FillSpeed = 10f;
 
     private ParticleSystem particleSys;
 
     public void Awake()
     {
         slider = gameObject.GetComponent<Slider>();
-        particleSys = GameObject.Find("Progress Bar Particles").GetComponent<ParticleSystem>();
+        //particleSys = GameObject.Find("Progress Bar Particles").GetComponent<ParticleSystem>();
+        slider.maxValue = max;
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        //IncrementProgress(0.75f);
+        IncrementProgress(10f);
     }
 
     // Update is called once per frame
@@ -31,16 +35,23 @@ public class TeamProgressBars : MonoBehaviour
         if (slider.value < targetProgress)
         {
             slider.value += FillSpeed * Time.deltaTime;
-            if (!particleSys.isPlaying)
-                particleSys.Play();
+            /*if (particleSys != null) 
+            {
+                if (!particleSys.isPlaying)
+                    particleSys.Play();
+            } */
         }
         else
         {
-            particleSys.Stop();
+            /*if (particleSys != null)
+            {
+                particleSys.Stop();
+            }*/
         }
           
     }
 
+    [PunRPC]
     public void IncrementProgress(float newProgress)
     {
         targetProgress = slider.value + newProgress;

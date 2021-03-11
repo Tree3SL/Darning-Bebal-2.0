@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 
-public class TimedBomb : MonoBehaviour
+public class TimedBomb : MonoBehaviour, ItemInterface
 {
     public bool is_active;
     public Sprite bomb_sprtie;
@@ -18,8 +18,8 @@ public class TimedBomb : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        is_active = false;
-        timer_object = this.transform.Find("Canvas").Find("Timer").gameObject;
+        //is_active = false;
+        //timer_object = this.transform.Find("Canvas").Find("Timer").gameObject;
     }
 
     // Update is called once per frame
@@ -36,7 +36,7 @@ public class TimedBomb : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+/*    private void OnTriggerEnter2D(Collider2D collision)
     {
         //TO DO: Check if isMine
         if (collision.gameObject.CompareTag("Player") && !is_active)
@@ -44,8 +44,9 @@ public class TimedBomb : MonoBehaviour
             //activate bomb
             set_active(true);
         }
-    }
+    }*/
 
+    [PunRPC]
     public void set_active(bool state) 
     {
         if (state)
@@ -66,7 +67,7 @@ public class TimedBomb : MonoBehaviour
         else 
         {
             is_active = false;
-            //disable time bomb, TEST ONLY
+            //disable time bomb when added to inventory
         }
     }
 
@@ -104,7 +105,7 @@ public class TimedBomb : MonoBehaviour
     void pun_hide()
     {
         this.gameObject.GetComponent<SpriteRenderer>().enabled = false;
-        this.gameObject.GetComponent<BoxCollider2D>().enabled = false;
+        //this.gameObject.GetComponent<BoxCollider2D>().enabled = false;
     }
 
     [PunRPC]
@@ -112,5 +113,16 @@ public class TimedBomb : MonoBehaviour
     {
         Destroy(this.gameObject);
     }
+    public void Use()
+    {
+        GameObject player = GameObject.Find("Game Manager").GetComponent<GameManager>().player_holder;
+        GameObject new_object = PhotonNetwork.Instantiate("TimedBomb", player.transform.position + new Vector3(1 * player.GetComponent<PlayerManager>().GetDirection(), 0, 0), Quaternion.identity, 0);
+        new_object.GetComponent<PhotonView>().RPC("set_active", RpcTarget.All, true);
+        Destroy(this.gameObject);
+    }
 
+    public void Disable()
+    {
+        is_active = false;
+    }
 }

@@ -9,16 +9,14 @@ public class PlayerNameTag : MonoBehaviourPun
 {
     [SerializeField]
     private Text nameTag;
-
     private GameManager game;
+    private GameObject player;
 
     private void Start()
     {
         game = GameObject.Find("Game Manager").GetComponent<GameManager>();
-        if(!photonView.IsMine)
-        {
-            SetUpNameTag();
-        }
+        player = transform.parent.parent.gameObject;
+        SetUpNameTag();
     }
 
     public void SetUpNameTag()
@@ -34,8 +32,18 @@ public class PlayerNameTag : MonoBehaviourPun
             color = 1;
         }
 
+        if (player != null) 
+        {
+            player.GetComponent<PlayerManager>().team_index = color+1;
+        }
+
         nameTag.text = photonView.Owner.NickName;
         nameTag.color = game.colors[color];
+
+        if (photonView.IsMine)
+        {
+            nameTag.text += " (You)";
+        }
 
     }
 }

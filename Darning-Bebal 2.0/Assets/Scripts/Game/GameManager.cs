@@ -11,6 +11,8 @@ public class GameManager : MonoBehaviourPun
     public List<string> team2;
     public Transform spawn;
 
+    public GameObject player_holder;
+
     private void Start()
     {
         if(PhotonNetwork.IsMasterClient)
@@ -31,4 +33,10 @@ public class GameManager : MonoBehaviourPun
         colors[0] = (Color)PhotonNetwork.CurrentRoom.CustomProperties["Color1"];
         colors[1] = (Color)PhotonNetwork.CurrentRoom.CustomProperties["Color2"];
     }
+
+    public void save_player(GameObject player_object) 
+    {
+        player_holder = player_object;
+    }
 }
+
