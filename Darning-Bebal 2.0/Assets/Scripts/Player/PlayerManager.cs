@@ -14,10 +14,6 @@ public class PlayerManager : MonoBehaviourPun
     private void Start()
     {
         movement = gameObject.GetComponent<PlayerMovement>();
-        if (photonView.IsMine) 
-        {
-            GameObject.Find("Game Manager").GetComponent<GameManager>().save_player(this.gameObject);
-        }
             
     }
 

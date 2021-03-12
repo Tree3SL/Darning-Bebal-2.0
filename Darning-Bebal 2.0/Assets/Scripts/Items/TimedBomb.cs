@@ -15,6 +15,12 @@ public class TimedBomb : MonoBehaviour, ItemInterface
     public LayerMask playerMask;
     public float stun_time;
 
+    public GameObject recover_target;
+
+    public bool is_exploded = false;
+    public int remian_recover = -1;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -33,6 +39,10 @@ public class TimedBomb : MonoBehaviour, ItemInterface
                 explode_detect();
                 is_active = false;
             }
+        }
+        if (is_exploded && remian_recover == 0) 
+        {
+            Destroy(this.gameObject);
         }
     }
 
@@ -73,7 +83,8 @@ public class TimedBomb : MonoBehaviour, ItemInterface
 
     public void explode_detect() 
     {
-        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, explosionRadius, playerMask);
+        remian_recover = 0;
+           Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, explosionRadius, playerMask);
         for (int i = 0; i < colliders.Length; i++)
         {
             Rigidbody2D targetRigidbody = colliders[i].GetComponent<Rigidbody2D>();
@@ -85,20 +96,23 @@ public class TimedBomb : MonoBehaviour, ItemInterface
             PlayerManager targetPlayer = colliders[i].GetComponent<PlayerManager>();
             if (!targetPlayer)
                 continue;
+            //stun all collided player object
             targetPlayer.DisablePlayer(true);
+            Debug.Log("Stun");
             //delay recover
             StartCoroutine(delay_recover(targetPlayer.gameObject));
-            GetComponent<PhotonView>().RPC("pun_hide", RpcTarget.All);
+            remian_recover++;
         }
+        this.gameObject.GetComponent<SpriteRenderer>().enabled = false;
+        //GetComponent<PhotonView>().RPC("pun_hide", RpcTarget.All);
+        is_exploded = true;
     }
 
     IEnumerator delay_recover(GameObject target)
     {
         yield return new WaitForSeconds(stun_time);
         target.gameObject.GetComponent<PlayerManager>().EnablePlayer();
-
-        GetComponent<PhotonView>().RPC("pun_destory", RpcTarget.All);
-        target.gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
+        remian_recover--;
     }
 
     [PunRPC]
@@ -113,6 +127,7 @@ public class TimedBomb : MonoBehaviour, ItemInterface
     {
         Destroy(this.gameObject);
     }
+
     public void Use()
     {
         GameObject player = GameObject.Find("Game Manager").GetComponent<GameManager>().player_holder;

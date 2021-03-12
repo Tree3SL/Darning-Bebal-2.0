@@ -20,7 +20,8 @@ public class GameManager : MonoBehaviourPun
             photonView.RPC("SetUpTeams", RpcTarget.AllBuffered);
         }
 
-        PhotonNetwork.Instantiate("Demo Player Photon", spawn.position, Quaternion.identity);
+        player_holder = PhotonNetwork.Instantiate("Demo Player Photon", spawn.position, Quaternion.identity);
+
     }
 
 
@@ -34,9 +35,11 @@ public class GameManager : MonoBehaviourPun
         colors[1] = (Color)PhotonNetwork.CurrentRoom.CustomProperties["Color2"];
     }
 
-    public void save_player(GameObject player_object) 
+    [PunRPC]
+    public void EndGame() 
     {
-        player_holder = player_object;
+        
     }
+
 }
 
