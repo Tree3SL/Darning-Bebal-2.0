@@ -2,28 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
-using Photon.Realtime;
 
 public class BananaPeel : MonoBehaviour, ItemInterface
 {
-    public bool active;
+    public bool active = false;
     public float stun_time = 0;
-    public float fall_force = 1;
-    // Start is called before the first frame update
-    void Start()
-    {
-        active = true;
-    }
+    public float throw_force;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        //TO DO: Check if isMine
         if (collision.gameObject.CompareTag("Player") && active)
         {
             //stun player
@@ -31,9 +19,7 @@ public class BananaPeel : MonoBehaviour, ItemInterface
             //reflection
             this.gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(3 * collision.gameObject.GetComponent<PlayerManager>().GetDirection(), 0), ForceMode2D.Impulse);
 
-            //animate falling
-            //float facing = collision.gameObject.GetComponent<PlayerManager>().GetDirection();
-            //collision.attachedRigidbody.AddForce(new Vector2(fall_force*facing, 0));
+
             GetComponent<PhotonView>().RPC("pun_hide", RpcTarget.All);
             //delay recover from stun
             StartCoroutine(delay_recover(collision.gameObject));
@@ -52,13 +38,15 @@ public class BananaPeel : MonoBehaviour, ItemInterface
     public void Use() 
     {
         GameObject player = GameObject.Find("Game Manager").GetComponent<GameManager>().player_holder;
-        GameObject new_object = PhotonNetwork.Instantiate("BananaPeel", player.transform.position + new Vector3(1* player.GetComponent<PlayerManager>().GetDirection(), 0,0), Quaternion.identity, 0);
+        GameObject new_object = PhotonNetwork.Instantiate("BananaPeel", player.transform.position + new Vector3(1 * player.GetComponent<PlayerManager>().GetDirection(), 0,0), Quaternion.identity, 0);
+        new_object.GetComponent<Rigidbody2D>().AddForce(new Vector2(throw_force * player.GetComponent<PlayerManager>().GetDirection(), 0), ForceMode2D.Impulse);
         Destroy(this.gameObject);
     }
 
     public void Disable()
     {
         active = false;
+        
     }
 
 

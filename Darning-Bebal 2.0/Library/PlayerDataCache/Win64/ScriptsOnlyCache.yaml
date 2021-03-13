@@ -5,8 +5,11 @@ ScriptsOnlyBuild:
     - CharacterController2D
     - Com.MyCompany.MyGame.PlayerNameInputField
     - Door
+    - EndGameResult
     - GameManager
+    - GiantBoot
     - ItemHolder
+    - Item_container
     - Launcher
     - PlayerManager
     - PlayerMovement
@@ -18,7 +21,7 @@ ScriptsOnlyBuild:
     - RpcCalls
     - TeamProgressBars
     - TimedBomb
-    - Timer
+    - Timer_Global
     - Window
     - quest_MemoryGame
     - quest_MemoryGameKey
@@ -283,7 +286,9 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 16356}
     - Class: 114
-      Script: {instanceID: 17926}
+      Script: {instanceID: 19170}
+    - Class: 114
+      Script: {instanceID: 19176}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -291,6 +296,10 @@ ScriptsOnlyBuild:
     - Class: 157
       Script: {instanceID: 0}
     - Class: 196
+      Script: {instanceID: 0}
+    - Class: 198
+      Script: {instanceID: 0}
+    - Class: 199
       Script: {instanceID: 0}
     - Class: 212
       Script: {instanceID: 0}
@@ -385,6 +394,12 @@ ScriptsOnlyBuild:
       Script: {instanceID: 16308}
     - Class: 114
       Script: {instanceID: 16356}
+    - Class: 114
+      Script: {instanceID: 19170}
+    - Class: 114
+      Script: {instanceID: 51926}
+    - Class: 114
+      Script: {instanceID: 98882}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -1138,7 +1153,7 @@ ScriptsOnlyBuild:
     className: PhotonTransformView
   - hash:
       serializedVersion: 2
-      Hash: 0c4a26535aeb42d718f533f2faafb031
+      Hash: 633bf07bf9c7a3b6c9d647e204b2ee34
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: RainbowCandy
@@ -1168,7 +1183,7 @@ ScriptsOnlyBuild:
     className: CinemachinePath
   - hash:
       serializedVersion: 2
-      Hash: 0baf213f4a4145967ced6906bab30069
+      Hash: f72e1c44dcbc0566e781d0844b6b6c40
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: BananaPeel
@@ -1240,7 +1255,7 @@ ScriptsOnlyBuild:
     className: TextButtonTransition
   - hash:
       serializedVersion: 2
-      Hash: 1a0b99b52fa8b08072f7b638ae66a713
+      Hash: fdc23ee7e6e67ee759e17a14ada7d0c6
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: GameManager
@@ -1831,7 +1846,7 @@ ScriptsOnlyBuild:
       Hash: b9c285966fc5a65f31de8cd84c6fe14b
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
-    className: Timer
+    className: Timer_Global
   - hash:
       serializedVersion: 2
       Hash: 2792936179724025482dc04d68a47ca7
@@ -1900,10 +1915,28 @@ ScriptsOnlyBuild:
     className: PlayableTrack
   - hash:
       serializedVersion: 2
-      Hash: 725033a8e85a558f01e3458d1fd9aa9a
+      Hash: 49f63bb5addeb667f9a51f89eade149b
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: TimedBomb
+  - hash:
+      serializedVersion: 2
+      Hash: 66d112a89ed02f606128c4e24223b60f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: GiantBoot
+  - hash:
+      serializedVersion: 2
+      Hash: 8efe26d9170043c285a9ecb18bbb1797
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: EndGameResult
+  - hash:
+      serializedVersion: 2
+      Hash: 232c483ef3bec06e4e0acc39827ce4a4
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: Item_container
   platform: 19
   scenePathNames:
   - Assets/Scenes/Launcher.unity

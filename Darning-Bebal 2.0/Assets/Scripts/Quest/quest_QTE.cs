@@ -33,6 +33,7 @@ public class quest_QTE : MonoBehaviour
         current_keys = new List<string>();
 
         CreateKeyList();
+        Input.ResetInputAxes();
     }
 
     void CreateKeyList()
@@ -69,6 +70,9 @@ public class quest_QTE : MonoBehaviour
             {
                 if (Input.anyKey)
                 {
+                    //if it was a mouse left button, ignore
+                    if (Input.GetMouseButton(0)) return;
+
                     //input correct
                     if (Input.GetKeyDown(current_keys[current_index]))
                     {

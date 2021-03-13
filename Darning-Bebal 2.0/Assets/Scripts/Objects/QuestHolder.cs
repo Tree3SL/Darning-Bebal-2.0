@@ -76,7 +76,7 @@ public class QuestHolder : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        //TO DO: Check if isMine
+        if (collision.gameObject != GameObject.Find("Game Manager").GetComponent<GameManager>().player_holder) return;
         if (collision.gameObject.CompareTag("Player")) 
         {
             triggerStay = true;
@@ -86,6 +86,7 @@ public class QuestHolder : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
+        if (collision.gameObject != GameObject.Find("Game Manager").GetComponent<GameManager>().player_holder) return;
         if (collision.gameObject == colliderObject)
         {
             triggerStay = false;

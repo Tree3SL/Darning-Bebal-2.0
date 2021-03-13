@@ -20,13 +20,8 @@ public class TimedBomb : MonoBehaviour, ItemInterface
     public bool is_exploded = false;
     public int remian_recover = -1;
 
+    public ParticleSystem explosion_particle;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        //is_active = false;
-        //timer_object = this.transform.Find("Canvas").Find("Timer").gameObject;
-    }
 
     // Update is called once per frame
     void Update()
@@ -36,6 +31,7 @@ public class TimedBomb : MonoBehaviour, ItemInterface
             if (!timer_object.GetComponent<timer>().get_is_counting()) 
             {
                 Debug.Log("Exploded");
+                explosion_particle.Play();
                 explode_detect();
                 is_active = false;
             }
@@ -84,7 +80,7 @@ public class TimedBomb : MonoBehaviour, ItemInterface
     public void explode_detect() 
     {
         remian_recover = 0;
-           Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, explosionRadius, playerMask);
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, explosionRadius, playerMask);
         for (int i = 0; i < colliders.Length; i++)
         {
             Rigidbody2D targetRigidbody = colliders[i].GetComponent<Rigidbody2D>();

@@ -48,6 +48,12 @@ public class TeamProgressBars : MonoBehaviour
                 particleSys.Stop();
             }*/
         }
+
+        //check if game end
+        if (slider.value >= slider.maxValue)
+        {
+            GameObject.Find("Game Manager").GetComponent<GameManager>().GameOver();
+        }
           
     }
 

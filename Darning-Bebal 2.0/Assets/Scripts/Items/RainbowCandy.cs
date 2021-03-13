@@ -7,21 +7,12 @@ public class RainbowCandy : MonoBehaviour, ItemInterface
     public float speed_amount;
     public float duration;
     public bool is_used = false;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public Color in_use_color;
 
-    private void OnTriggerEnter2D(Collider2D collision) 
+
+/*    private void OnTriggerEnter2D(Collider2D collision) 
     {
-        //TO DO: Check if isMine
         if (collision.gameObject.CompareTag("Player"))
         {
             //increase speed
@@ -32,11 +23,12 @@ public class RainbowCandy : MonoBehaviour, ItemInterface
             this.gameObject.GetComponent<SpriteRenderer>().enabled = false;
             this.gameObject.GetComponent<BoxCollider2D>().enabled = false;
         }
-    }
+    }*/
 
     void activate(GameObject target) 
     {
         target.GetComponent<PlayerManager>().BoostSpeed(speed_amount);
+        is_used = true;
     }
 
     IEnumerator delay_recover(GameObject target)
@@ -57,13 +49,11 @@ public class RainbowCandy : MonoBehaviour, ItemInterface
 
         //delay recover
         StartCoroutine(delay_recover(player));
-        this.gameObject.GetComponent<SpriteRenderer>().enabled = false;
-        this.gameObject.GetComponent<BoxCollider2D>().enabled = false;
+        this.gameObject.GetComponent<SpriteRenderer>().color = in_use_color;
 
     }
 
     public void Disable()
     {
-
     }
 }

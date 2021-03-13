@@ -13,6 +13,12 @@ public class GameManager : MonoBehaviourPun
 
     public GameObject player_holder;
 
+    public GameObject EndGameResult;
+
+
+    public GameObject[] item_list;
+    public ItemHolder ih;
+
     private void Start()
     {
         if(PhotonNetwork.IsMasterClient)
@@ -35,10 +41,9 @@ public class GameManager : MonoBehaviourPun
         colors[1] = (Color)PhotonNetwork.CurrentRoom.CustomProperties["Color2"];
     }
 
-    [PunRPC]
-    public void EndGame() 
+    public void GameOver() 
     {
-        
+        EndGameResult.SetActive(true);
     }
 
 }

@@ -97,3 +97,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed_amount: 5
   duration: 10
+  is_used: 0
+  in_use_color: {r: 1, g: 0.84313726, b: 0.08235294, a: 0.50980395}
