@@ -135,7 +135,7 @@ using UnityEngine.UI;
     public void Play()
     {
         progressLabel.SetActive(true);
-        controlPanel.SetActive(false);
+        //controlPanel.SetActive(false);
 
         PhotonNetwork.CurrentRoom.IsOpen = false;
 
