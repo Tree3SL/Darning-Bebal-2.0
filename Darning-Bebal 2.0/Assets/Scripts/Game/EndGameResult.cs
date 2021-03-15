@@ -59,7 +59,6 @@ public class EndGameResult : MonoBehaviour
     //restart function only for master
     public void Restart() 
     {
-        PhotonNetwork.CurrentRoom.IsOpen = true;
         PhotonNetwork.LoadLevel(level);
     }
 }

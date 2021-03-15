@@ -80,7 +80,7 @@ using UnityEngine.UI;
     {
         Connect();
         progressLabel.SetActive(false);
-        controlPanel.SetActive(false);
+        if(!PhotonNetwork.IsConnected) controlPanel.SetActive(false);
     }
 
     private void Update()
